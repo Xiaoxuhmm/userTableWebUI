@@ -5,6 +5,9 @@ import {
   StaticRouter,
   Route
 } from 'react-router';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import appReducer from '../../src/reducers';
 
 // import our main App component
 import App from '../../src/App';
@@ -14,6 +17,8 @@ const fs = require("fs");
 
 export default (req, res, next) => {
     const context = {};
+
+    const store = createStore(appReducer);
 
     // point to the html file created by CRA's build tool
     const filePath = path.resolve(__dirname, '..', '..', 'build', 'index.html');
@@ -29,9 +34,11 @@ export default (req, res, next) => {
 
         // render the app as a string
         const html = ReactDOMServer.renderToString(sheet.collectStyles(
-          <StaticRouter>
-            <Route path="/" component={App} />
-          </StaticRouter>
+          <Provider store={store}>
+            <StaticRouter>
+              <Route path="/" component={App} />
+            </StaticRouter>
+          </Provider>
         ));
         const styles = sheet.getStyleTags();
 
