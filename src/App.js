@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import TestForReactLoadable from './components/testForReactLoadable';
 import {StyledComponents} from './components/testForStyledComponents';
-// import {TestForReactRouter} from './components/testForReactRouter';
+import {TestForReactRouter} from './components/testForReactRouter';
 import './App.css';
 
 class App extends Component {
