@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import TestForReactLoadable from './components/testForReactLoadable';
+import {StyledComponents} from './components/testForStyledComponents';
+// import {TestForReactRouter} from './components/testForReactRouter';
 import './App.css';
 
 class App extends Component {
@@ -15,6 +17,9 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <TestForReactLoadable />
+        <StyledComponents>
+          {"This is a test for styled-components"}
+        </StyledComponents>
       </div>
     );
   }
