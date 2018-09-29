@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {
   fetchData,
-  sortUsers
+  sortUsers,
+  fetchFromUrl
 } from '../actions/userTable';
 import UserTable from '../components/table';
 
@@ -17,13 +17,7 @@ class UserTableContainer extends Component{
   }
 
   componentDidMount(){
-    axios.get("https://randomuser.me/api/?results=500")
-      .then((response)=>{
-        this.props.fetchUsers(response.data.results);
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
+    this.props.fetchFromUrl(500);
   }
 
   render(){
@@ -74,7 +68,8 @@ const mapDispatchToProps = (dispatch) => {
   return (
     {
       fetchUsers: (data)=> {dispatch(fetchData(data))},
-      sortUsers: (sortBy)=> {dispatch(sortUsers(sortBy))}
+      sortUsers: (sortBy)=> {dispatch(sortUsers(sortBy))},
+      fetchFromUrl: (number) => {fetchFromUrl(dispatch, number)}
     }
   )
 }

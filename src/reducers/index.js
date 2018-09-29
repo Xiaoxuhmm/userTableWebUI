@@ -3,6 +3,8 @@ import {
   FETCH_DATA,
   SORT_USERS,
   PAGE_TO,
+  DATA_LOADING,
+  DATA_RECEIVED
 } from '../actions/userTable';
 
 const initialState = {
@@ -16,7 +18,7 @@ const initialState = {
   headers:          ['first', 'last', 'email'],
   currentSortBy:    '',
   currentSortOrder: 0,
-  isLoading :       true
+  isLoading :       false
 }
 
 
@@ -89,23 +91,31 @@ export const buildPaginationList = (currentPage, totalPages) => {
 
 export const userTableReducer = (state = initialState, action) => {
   let users, tablePages, currentPage, totalPages, paginationList, currentSortBy, currentSortOrder;
-
   switch (action.type) {
     case FETCH_DATA:
-      users = parseData(action.data);
-      tablePages = buildPages(users);
-      totalPages = tablePages.length;
-      currentPage = totalPages === 0 ? -1 : 0;
-      paginationList = buildPaginationList(currentPage, totalPages);
-      return {
-        ...state,
-        users,
-        tablePages,
-        currentPage,
-        totalPages,
-        paginationList,
-        isLoading: false
+      if(action.status === DATA_LOADING){
+        return {
+          ...state,
+          isLoading: true
+        }
       }
+      if(action.status === DATA_RECEIVED){
+        users = parseData(action.data);
+        tablePages = buildPages(users);
+        totalPages = tablePages.length;
+        currentPage = totalPages === 0 ? -1 : 0;
+        paginationList = buildPaginationList(currentPage, totalPages);
+        return {
+          ...state,
+          users,
+          tablePages,
+          currentPage,
+          totalPages,
+          paginationList,
+          isLoading: false
+        }
+      }
+      return state;
     case SORT_USERS:
       currentSortOrder = getSortOrder(state.currentSortOrder, state.currentSortBy, action.sortBy);
       sortUsersByProperty(state.users, action.sortBy, currentSortOrder);

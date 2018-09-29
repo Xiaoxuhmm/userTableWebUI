@@ -56,7 +56,7 @@ describe('userTableReducer', ()=>{
         headers:          ['first', 'last', 'email'],
         currentSortBy:    '',
         currentSortOrder: 0,
-        isLoading :       true
+        isLoading :       false
       }
     )
   })
