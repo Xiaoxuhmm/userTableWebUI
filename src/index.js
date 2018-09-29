@@ -10,10 +10,11 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import appReducer from './reducers'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(appReducer);
 
-ReactDOM.hydrate(
+ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Route path="/" component={App} />
