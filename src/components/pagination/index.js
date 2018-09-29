@@ -6,8 +6,8 @@ import DisplayingDataPanel from './displayingDataPanel';
 import {PaginationWrapper} from './style';
 
 
-const renderPaginationItems = (pageLists, currentPage, totalPages, onPageClick) => {
-  return pageLists.map((page)=>{
+const renderPaginationItems = (pageList, currentPage, totalPages, onPageClick) => {
+  return pageList.map((page)=>{
     return (
       <UserTablePaginationItem
         page={page}
@@ -22,7 +22,7 @@ const renderPaginationItems = (pageLists, currentPage, totalPages, onPageClick) 
 
 const UserTablePagination = (props)=>{
   const {
-    pageLists,
+    pageList,
     currentPage,
     totalPages,
     userPerPage,
@@ -30,7 +30,7 @@ const UserTablePagination = (props)=>{
     onPageClick
   } = props;
   const paginationItems = renderPaginationItems(
-    pageLists,
+    pageList,
     currentPage,
     totalPages,
     onPageClick
@@ -38,9 +38,9 @@ const UserTablePagination = (props)=>{
   return (
     <PaginationWrapper>
       <DisplayingDataPanel
-        userPerPage = {userPerPage}
+        numberPerPage = {userPerPage}
         currentPage = {currentPage}
-        totalUsers = {totalUsers}
+        totalNum = {totalUsers}
       />
       <Pagination>
         {paginationItems}
@@ -50,13 +50,13 @@ const UserTablePagination = (props)=>{
 }
 
 UserTablePagination.defaultProps = {
-  pageLists:    [],
+  pageList:    [],
   currentPage:  -1,
   totalPages:    0
 }
 
 UserTablePagination.propTypes = {
-  pageLists:    PropTypes.arrayOf(PropTypes.string),
+  pageList:    PropTypes.arrayOf(PropTypes.string),
   currentPage:  PropTypes.number,
   totalPages:   PropTypes.number
 }

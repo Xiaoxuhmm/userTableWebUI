@@ -15,7 +15,7 @@ class PaginationContainer extends Component{
 }
 
 PaginationContainer.defaultProps = {
-  pageLists:    [],
+  pageList:    [],
   currentPage:  0,
   totalPages:   0,
   userPerPage:  0,
@@ -23,7 +23,7 @@ PaginationContainer.defaultProps = {
 }
 
 PaginationContainer.propTypes = {
-  pageLists:    PropTypes.arrayOf(PropTypes.string),
+  pageList:    PropTypes.arrayOf(PropTypes.string),
   currentPage:  PropTypes.number,
   totalPages:   PropTypes.number,
   userPerPage:  PropTypes.number,
@@ -42,7 +42,7 @@ const mapStateToProps = (state, ownProps)=> {
   } = src;
   return {
     ...ownProps,
-    pageLists: paginationList,
+    pageList: paginationList,
     currentPage,
     totalPages,
     userPerPage,
