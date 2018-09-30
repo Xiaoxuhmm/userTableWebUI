@@ -5,6 +5,8 @@ import {
   PaginationLink
 } from 'reactstrap';
 
+
+// Render pagination items and set it to active / disable when necessary
 const UserTablePaginationItem = ({
   page,
   currentPage,
