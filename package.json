@@ -1,7 +1,7 @@
 {
   "name": "ssr",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "public": true,
   "dependencies": {
     "axios": "^0.18.0",
     "babel-preset-stage-2": "^6.24.1",
@@ -26,9 +26,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.0",
     "jest-enzyme": "^6.1.2"
-  }
+  },
+  "homepage": "http://xiaoxuhmm.github.io/userTableWebUI"
 }
